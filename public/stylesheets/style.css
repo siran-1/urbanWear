@@ -1,0 +1,361 @@
+:root {
+  --light-background: #fafafa;
+  --Off-White: #eeeff1;
+
+ /* accents */
+ --Black: #000000;
+ --Light-black: #212226;
+ --Grey-font: #707594;
+
+ /* Mandate-colors */
+ --white-important: #edf2f4;
+ --green: #09BC8A;
+ --blue: #209CEE;
+ --purple: #CF43FD;
+ --dark-purple: #4E4187;
+ --main-color: #323232;
+
+
+  --size-xxs:0.5rem;
+  --size-xs:0.75rem;
+  --size-sm:0.875rem;
+  --size-base:1rem;
+  --size-lg:1.125rem;
+  --size-xl:1.25rem;
+  --size-2xl:1.5rem;
+  --size-3xl:1.875rem;
+  --size-4xl:2.25rem;
+  --size-5xl:3rem;
+  --size-6xl:3.75rem;
+  --size-7xl:4.5rem;
+  --size-8xl:6rem;
+  --size-9xl:8rem;
+  --size-10xl:10rem;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--Off-White);
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  user-select: none;
+} 
+
+/* This is for login page */
+#login_page_btn{
+  background-color: #0e1c36;
+  color: #fff; 
+}
+
+#login_page_btn:hover{
+  background-color: #304263;
+  color: #fff; 
+}
+
+.profile-image-pic{
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+}
+
+.cardbody-color{
+  background-color: #ebf2fa;
+}
+
+a{
+  text-decoration: none;
+}
+
+/* This is for homepage */
+
+#urbanWear-title_div{
+  font-family: kavoon;
+  background-color: var(--blue);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+#urbanWear-title_div >div:first-child{
+  display: flex;
+  gap:0.5em;
+}
+
+.UrbanWear-titleText{
+  color: var(--Off-White);
+}
+
+#urbanWear_img{
+  border-radius: 1em;
+  padding: 0.05em;
+}
+
+#urbanWear_imgmain{
+  border: 2px solid var(--light-background);
+  border-radius: 50%;
+}
+
+#urbanWear_logout{
+  background-color: var(--blue);
+  color: var(--light-background);
+  border: 1px solid var(--light-background);
+}
+.urbanWear-navBar{
+  background-color: var(--main-color);
+  padding: 0.5em 0.5em 0 0.5em;
+  border-radius: 5px 5px 0 0 !important;
+}
+
+.nav-tabs{
+  border: none !important;
+}
+
+.nav-link{
+  color: var(--Off-White) !important;
+  font-weight: 300 !important;
+}
+
+.nav-link.active{
+  color: var(--Black) !important;
+}
+
+.tab-pane{
+  padding: 0.5em;
+  background-color: var(--light-background)!important;
+  border-radius:0 0 5px 5px;
+}
+
+/* This is for operations view */
+/* Dashboard */
+.dashboard_topDiv{
+  padding: 0.5em;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.dashboard_selectors{
+  height: 35px;
+}
+
+.dashboard_bottomDiv{
+  padding: 0.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
+}
+.dashboard_quote{
+  background: var(--Off-White);
+  padding: 1em;
+  border-radius: 5px;
+  text-align: center;
+}
+h2{
+  font-weight: 100;
+  font-size: 3rem;
+}
+.dashboard_controls{
+  display: none;
+  gap: 1em;
+}
+.dashboard_chart_container{
+  display: flex;
+  gap: 0.5em;
+}
+
+.chart_canvas_container{
+  border-radius: 5px;
+  padding: 0.2em;
+  display: none;
+  background: var(--Off-White);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#productSalesChart_Div{
+  border: 2px solid rgba(21,115,71,0.8);
+  padding: 0.5em;
+}
+#productSalesChart{
+  background:  rgba(21,115,71,0.1);
+  border-radius: 5px;
+  margin-bottom: 0.5em;
+  padding: 0.2em;
+}
+#allSizeStockChart_Div{
+  border: 2px solid rgba(13,110,253,0.8);
+  padding: 0.5em;
+}
+#allSizeStockChart{
+  background:  rgba(13,110,253,0.1);
+  border-radius: 5px;
+  margin-bottom: 0.5em;
+  padding: 0.2em;
+}
+#supplierMetric_Div{
+  border: 2px solid rgba(0,0,0,0.4);
+}
+#supplierMetric{
+  background:  rgba(0,0,0,0.1);
+  border-radius: 5px;
+  margin-bottom: 0.5em;
+  padding: 0.2em;
+}
+.chart_controls{
+  align-self: flex-start;
+}
+/* Inventory and order tabs */
+#urbanWear-inventoryTableDiv, #urbanWear-orderTableDiv{
+  padding: 0.5em;
+  background: var(--Off-White);
+  border-radius: 5px;
+  border: 2px solid #c3c4c6;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+#order_table{
+  width: 100% !important;
+  height: 200px !important;
+}
+
+#inventory_table{
+  width: 100% !important;
+  height: 200px !important;
+}
+
+#inventory_insert_modal,#order_insert_modal{
+  display: none;
+  position: absolute;
+  top: 5%;
+  left: 20%;
+  background: var(--Off-White);
+  width: 700px;
+  padding: 0.5em;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 5px;
+  filter: drop-shadow(5px 5px 10px #000000);
+}
+#inventory_insert_modal div:nth-of-type(1),#order_insert_modal div:nth-of-type(1){
+  align-self: flex-end;
+}
+.insert_modal_body{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 0.5em;
+  align-content: center;
+  justify-content: center;
+}
+
+#inventory_viewModal{
+  display:none;
+  position: absolute;
+  top: 1%;
+  left: 35%;
+  background: var(--Off-White);
+  width: 400px;
+  padding: 0.5em;
+  flex-direction: column;
+  justify-content: center;
+  gap:0.5em;
+  border-radius: 5px;
+  filter: drop-shadow(5px 5px 10px #000000);
+  text-align: left;
+}
+
+.close_inventory_viewModal_div{
+  align-self: flex-end;
+}
+#inventory_viewModal .inventoryModalData_label_div{
+  border: 1px solid var(--Grey-font);
+  padding: 0.2em;
+  border-radius: 2px;
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.inventoryModalData_label{
+  font-weight: 300;
+  align-self: flex-start;
+}
+
+.inventoryModalData_img{
+  object-fit: cover;
+  width: 250px;
+  height: 200px;
+}
+
+/* notifications */
+#notifications{
+  overflow: scroll;
+  height: 290px;
+}
+
+.urbanMessageDiv{
+  background: var(--Off-White);
+  border-radius: 5px;
+  padding: 1em;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  margin: 0.5em;
+}
+.urbanMessageDivHeader{
+  display: flex;
+  justify-content: space-between;
+}
+.urbanWearMessages{
+  padding: 1em;
+  background: var(--blue);
+  border-radius: 5px;
+  color: var(--light-background);
+  width: 50%;
+  overflow-wrap: break-word;
+  margin-bottom: 0.5em;
+}
+
+.urbanWearTimestamp{
+  font-weight: 300;
+  color: var(--blue);
+}
+/* import font */
+@font-face {
+  font-family: kavoon;
+  src: url(/fonts/Kavoon-Regular.ttf);
+} 
+
+/* utils */
+::-webkit-scrollbar {
+  width: 5px; 
+}
+
+/* This will affect the handle of the scrollbar */
+::-webkit-scrollbar-thumb {
+  background:var(--blue);
+  border-radius: 4px; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}

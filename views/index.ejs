@@ -1,0 +1,204 @@
+<%-include('partials/header')-%>
+
+  <body>
+    <div class="container-fluid">
+      <div class="mt-1 p-2 text-white rounded" id="urbanWear-title_div">
+        <div>
+          <img id="urbanWear_imgmain"src="/images/uw192.png" height="60px" width="60px">
+          <h1 class="UrbanWear-titleText">UrbanWear Co.</h1>
+        </div>
+        <div id="urbanWear_img">
+          <button id="urbanWear_logout" class="btn btn-warning btn-sm">logout</button>
+        </div>
+      </div>
+      <ul class="mt-1 nav nav-tabs urbanWear-navBar">
+        <% if(locals.role=='l4' ){%>
+          <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#dashboard">Dashboard</a>
+          </li>
+          <%}%>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#inventory" id="inventory_tab_btn">Inventory</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#order" id="order_tab_btn">Orders</a>
+            </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-bs-toggle="tab" href="#notifications">Notifications</a>
+                </li>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content m-0">
+        <% if(locals.role=='l4' ){%>
+          <div class="tab-pane active" id="dashboard">
+            <div class="dashboard_topDiv">
+              <select class="dashboard_selectors" id="dashboard_month_dropdown" name="month">
+                <option value="01">January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+              </select>
+              <select class="dashboard_selectors" id="dashboard_year_dropdown" name="year">
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+              </select>
+              <button type="button" class="btn btn-dark dashboard_selectors" id="dashboard_dateSubmit">Get
+                Details</button>
+            </div>
+            <div class="dashboard_bottomDiv">
+              <div class="dashboard_controls">
+                <button class="btn btn-success viewChartBtn" id="totalOrderBtn" data-attribute="getTotalOrders">View Total Approved Orders</button>
+                <button class="btn btn-primary viewChartBtn" id="totalStockBtn" data-attribute="getTotalStock">View Total Stock</button>
+                <button class="btn btn-dark viewChartBtn" id="supplierPerformanceBtn" data-attribute="getSupplierMetric">View Supplier Metrics</button>
+              </div>
+              <div class="dashboard_quote">
+                <h2>Dashboard gives you a detailed analysis of the orders, stocks, inventory and supplier
+                  trend analysis based on month.</h2>
+                <p><i><u>Select the month and year to view the analysis!</u></i></p>
+              </div>
+              <div class="dashboard_chart_container">
+                <div class="chart_canvas_container" id="productSalesChart_Div">
+                  <canvas class="dashboard_canvas" id="productSalesChart"></canvas>
+                  <select id="productSalesChart_chartSwitcher" class="chart_controls">
+                    <option value="bar" selected>Bar</option>
+                    <option value="pie">Pie</option>
+                    <option value="doughnut">Doughnut</option>
+                  </select>
+                </div>
+                <div class="chart_canvas_container" id="allSizeStockChart_Div">
+                  <canvas class="dashboard_canvas" id="allSizeStockChart"></canvas>
+                  <select id="allSizeStockChart_chartSwitcher" class="chart_controls">
+                    <option value="doughnut" selected>Doughnut</option>
+                    <option value="pie">Pie</option>
+                    <option value="polarArea">Polar Area</option>
+                  </select>
+                </div>
+                <div class="chart_canvas_container" id="supplierMetric_Div">
+                  <canvas class="dashboard_canvas" id="supplierMetric"></canvas>
+                  <select id="supplierMetric_chartSwitcher" class="chart_controls">
+                    <option value="bar" selected>Bar</option>
+                    <option value="comparebar">Compare Suppliers</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <%}%>
+            <div class="tab-pane fade" id="inventory">
+              <div id="urbanWear-inventoryTableDiv">
+                <% if(locals.role=='l2' ){%>
+                  <button class="btn btn-success" id="inventory_insert_btn">Insert New Inventory</button>
+                  <%}%>
+                    <table id="inventory_table" class="hover">
+                      <thead></thead>
+                      <tbody></tbody>
+                    </table>
+                    <div id="inventory_insert_modal">
+                      <div><button class="btn btn-dark close-modal"><i class="fas fa-times"></i> Close</button></div>
+                      <form action="/inventory/insert" id="insert_inventory_form" method="POST" enctype="multipart/form-data">
+                        <div class="insert_modal_body">
+                          <div class="mb-3">
+                            <label for="productID" class="form-label">Product ID</label>
+                            <input type="text" class="form-control" id="productID" placeholder="Enter Product ID"
+                              name="productID">
+                          </div>
+                          <div class="mb-3">
+                            <label for="stockLevel" class="form-label">Stock Level</label>
+                            <input type="text" class="form-control" id="stockLevel" placeholder="Enter Stock Level"
+                              name="stockLevel">
+                          </div>
+                          <div class="mb-3">
+                            <label for="supplierID" class="form-label">Supplier ID</label>
+                            <input type="text" class="form-control" id="supplierID" placeholder="Enter Supplier ID"
+                              name="supplierID">
+                          </div>
+                          <div class="mb-3">
+                            <label for="receivedDate" class="form-label">Received Date</label>
+                            <input type="date" class="form-control" id="receivedDate" placeholder="Enter Received Date"
+                              name="receivedDate">
+                          </div>
+                          <div class="mb-3">
+                            <label for="expiryDate" class="form-label">Expiry Date</label>
+                            <input type="date" class="form-control" id="expiryDate" placeholder="Enter Expiry Date"
+                              name="expiryDate">
+                            </div>
+                            <div class="mb-3">
+                              <label for="productType" class="form-label">Product Type</label>
+                              <input type="text" class="form-control" id="productType" placeholder="Enter Product Type"
+                                name="productType">
+                            </div>
+                          <div class="mb-3">
+                            <label for="damagedUnits" class="form-label">Damaged Units</label>
+                            <input type="text" class="form-control" id="damagedUnits" placeholder="Enter Damaged Units"
+                              name="damagedUnits">
+                            <input type="file" class="mt-1 form-control" name="damagedPicture">
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="inventorySubmitBtn">Submit</button>
+                      </form>
+                    </div>
+                    <div id="inventory_viewModal"> 
+                    </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="order">
+              <div id="urbanWear-orderTableDiv">
+                <% if(locals.role=='l2' ){%>
+                  <button class="btn btn-success" id="order_insert_btn">Insert New Order</button>
+                  <%}%>
+                    <table id="order_table" class="hover">
+                      <thead></thead>
+                      <tbody></tbody>
+                    </table>
+                    <div id="order_insert_modal">
+                      <div><button class="btn btn-dark close-modal"><i class="fas fa-times"></i> Close</button></div>
+                      <form action="/order/insert" id="insert_order_form" method="POST" enctype="multipart/form-data">
+                        <div class="insert_modal_body">
+                          <div class="mb-3">
+                            <label for="productID" class="form-label">Product ID</label>
+                            <input type="text" class="form-control" id="productID" placeholder="Enter Product ID"
+                              name="productID">
+                          </div>
+                          <div class="mb-3">
+                            <label for="orderDate" class="form-label">Order Date</label>
+                            <input type="date" class="form-control" id="orderDate" placeholder="Enter Order Date"
+                              name="orderDate">
+                          </div>
+                          <div class="mb-3">
+                            <label for="orderStatus" class="form-label">Order Status</label>
+                            <input type="text" class="form-control" id="orderStatus" placeholder="Enter Order Status"
+                              name="orderStatus">
+                          </div>
+                          <div class="mb-3">
+                            <label for="orderQuantity" class="form-label">Order Quantity</label>
+                            <input type="text" class="form-control" id="orderQuantity"
+                              placeholder="Enter Order Quantity" name="orderQuantity">
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="orderSubmitBtn">Submit</button>
+                      </form>
+                    </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="notifications">
+              <div id="notification_parentDiv">
+                
+              </div>
+            </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    var role = '<%= locals.role %>';
+  </script>
+  <script src="/javascripts/notifications.js"></script>
+  <script src="/javascripts/logout.js"></script>
+  <%-include('partials/footer')-%>
