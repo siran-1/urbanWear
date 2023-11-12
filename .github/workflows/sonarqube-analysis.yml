@@ -1,0 +1,27 @@
+name: SonarQube Analysis
+
+on:
+  push:
+    branches:
+      - main  # or any branch you want to analyze
+
+jobs:
+  build:
+    name: Analyze with SonarQube
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 11  # SonarScanner requires Java
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+
+    - name: SonarQube Scan
+      uses: SonarSource/sonarqube-scan-action@master
+      with:
+        args: >
+          -Dsonar.projectKey=urbanWear
+          -Dsonar.host.url=http://54.175.197.101:9000/
+          -Dsonar.login=${{ secrets.SONARQUBE_TOKEN }}
