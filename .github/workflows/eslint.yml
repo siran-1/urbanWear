@@ -21,6 +21,9 @@ jobs:
     
     - name: Run ESLint
       run: npm run lint
-    
+
+    - name: Update permissions for jest
+      run: chmod +x node_modules/.bin/jest
+
     - name: Run Jest Tests
       run: npm test
