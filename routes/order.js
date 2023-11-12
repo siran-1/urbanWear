@@ -5,7 +5,7 @@ var multer  = require('multer');
 var upload = multer();
 
 /* GET order. */
-router.post('/', function (req, res, next) {
+router.post('/', function (req, res) {
     const query = "SELECT * FROM urbanWear.orders;";
     connection.query(query, (error, results) => {
         if (error) {
@@ -16,7 +16,7 @@ router.post('/', function (req, res, next) {
     });
 });
 
-router.post('/insert', upload.none(),async function (req, res, next) {
+router.post('/insert', upload.none(),async function (req, res) {
     //submit the order data to the mysql
     const { productID, orderDate, orderStatus, orderQuantity} = req.body;
     const values = [productID, orderDate, orderStatus, orderQuantity];

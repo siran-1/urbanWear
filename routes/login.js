@@ -15,7 +15,7 @@ function queryDatabase(query, values) {
 }
 
 /* GET home page. */
-router.post('/', async function (req, res, next) {
+router.post('/', async function (req, res) {
     const login = req.body.username;
     const password = req.body.password;
    

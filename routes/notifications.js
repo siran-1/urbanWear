@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var connection = require('../db/dbConnection');
 
 const AWS = require('aws-sdk');
 

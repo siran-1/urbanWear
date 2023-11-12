@@ -26,7 +26,7 @@ router.post('/', function (req, res) {
     });
 });
 
-router.post('/insert', upload.single('damagedPicture'), async function (req, res, next) {
+router.post('/insert', upload.single('damagedPicture'), async function (req, res) {
     //setting up the bucket   
     var s3 = new AWS.S3();
     var params = {
@@ -35,7 +35,7 @@ router.post('/insert', upload.single('damagedPicture'), async function (req, res
         Body: fs.createReadStream(req.file.path)
     };
     //s3 file upload
-    s3.upload(params, async function (err, data) {
+    s3.upload(params, async function (err) {
         if (err) {
             console.log("Error uploading data: ", err);
             res.status(500).send(err);
