@@ -15,7 +15,7 @@ AWS.config.update({
 var upload = multer({ dest: 'uploads/' })
 
 /* GET inventory. */
-router.post('/', function (req, res, next) {
+router.post('/', function (req, res) {
     const query = "SELECT * FROM urbanWear.inventory;";
     connection.query(query, (error, results) => {
         if (error) {
@@ -54,7 +54,7 @@ router.post('/insert', upload.single('damagedPicture'), async function (req, res
     });
 });
 
-router.post('/getinventory', function (req, res, next) {
+router.post('/getinventory', function (req, res) {
     const inventoryID = req.body.inventoryID;
     console.log(inventoryID);
     const query = "SELECT * FROM urbanWear.inventory where inventoryID = ?;";

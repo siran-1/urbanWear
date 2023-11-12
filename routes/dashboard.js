@@ -7,9 +7,10 @@ var connection = require('../db/dbConnection');
 connection.query = util.promisify(connection.query);
 
 /* GET data. */
-router.post('/', async function (req, res, next) {
+router.post('/', async function (req, res) {
     try {
         let source = req.body.source;
+        let query;
         source == "totalOrders" ? query = 'call urbanWear.GetTotalOrdersForMonth(?,?)' :
             source == "totalStock" ? query = 'call urbanWear.CalculateNewStock(?,?);' :
                 source == "supplierMetric" ? query = 'call urbanWear.FetchDamagedUnits(?, ?);' : 
