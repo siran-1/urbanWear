@@ -20,6 +20,9 @@ jobs:
 
     - name: SonarQube Scan
       uses: SonarSource/sonarqube-scan-action@master
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: http://54.175.197.101:9000
       with:
         args: >
           -Dsonar.projectKey=urbanWear
