@@ -26,5 +26,5 @@ jobs:
       with:
         args: >
           -Dsonar.projectKey=urbanWear
-          -Dsonar.host.url=http://54.175.197.101:9000/
+          -Dsonar.host.url=http://54.91.132.20:9000/
           -Dsonar.login=${{ secrets.SONARQUBE_TOKEN }}
