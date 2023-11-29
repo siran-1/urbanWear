@@ -1,5 +1,5 @@
 # Dependency directories
-node_modules/
+/node_modules/
 
 # Build outputs
 /public/javascripts/bundle.js
