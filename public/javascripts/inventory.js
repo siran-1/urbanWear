@@ -34,7 +34,6 @@ $(document).ready(function () {
             let inventoryModalData = '';
             // inventory ajax
             inventoryAjax(inventoryID).done(function (data) {
-                console.log(data);
                 role == 'l4' ? $("#inventory_viewModal").css('display', 'flex') : null;
                 inventoryModalData = `
                 <div class='close_inventory_viewModal_div'><button class='btn btn-dark' id='close_inventory_viewModal'>Close</button></div>
@@ -80,7 +79,6 @@ $(document).ready(function () {
             contentType: false,
             success: function (response) {
                 $("#insert_inventory_form")[0].reset();
-                console.log("Success:", response);
                 inventorySubmitBtn.textContent = '✔ Inventory Added';
                 setTimeout(() => {
                     inventorySubmitBtn.textContent = 'Submit';
@@ -95,7 +93,6 @@ $(document).ready(function () {
 
     // ajax for inventory
     function inventoryAjax(inventoryID) {
-        console.log("inside the inventory ajax wit the id " + inventoryID)
         return $.ajax({
             type: "POST",
             url: "/inventory/getinventory",

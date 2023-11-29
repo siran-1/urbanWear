@@ -1,32 +1,27 @@
+// routes/login.js
 var express = require('express');
 var router = express.Router();
-const connection = require('../db/dbConnection');
+const pool = require('../db/dbConnection');
 const bcrypt = require('bcrypt');
 
 function queryDatabase(query, values) {
-    return new Promise((resolve, reject) => {
-        connection.query(query, values, (error, results) => {
-            if (error) {
-                return reject(error);
-            }
-            resolve(results);
-        });
-    });
+    return pool.query(query, values)
+        .then(([results]) => results)
+        .catch((error) => { throw error; });
 }
 
-/* GET home page. */
+/* POST login request */
 router.post('/', async function (req, res) {
     const login = req.body.username;
     const password = req.body.password;
    
     try {
-        const query = 'SELECT emp_name, department, passhash from urbanWear.users where login = ?';
+        const query = 'SELECT emp_name, department, passhash FROM urbanWear.users WHERE login = ?';
         const values = [login];
         const result = await queryDatabase(query, values);
 
         if (result.length > 0) {
             const { emp_name: username, department, passhash: hash } = result[0];
-            console.log(hash);
             if (bcrypt.compareSync(password, hash)) {
                 let role = "";
                 if (department === 'operations') {
@@ -36,7 +31,7 @@ router.post('/', async function (req, res) {
                 }
                 req.session.username = username;
                 req.session.role = role;
-                res.redirect('/login/app')
+                res.redirect('/login/app');
             } else {
                 res.redirect('/?error=invalidcredentials');
             }
@@ -50,13 +45,11 @@ router.post('/', async function (req, res) {
 });
 
 router.get('/app', (req, res) => {
-    console.log("this is app route"+req.session.username);
     if (req.session && req.session.username && req.session.role) {
-        res.render('index', { title: 'Express', role:req.session.role, username:req.session.username});
-    }
-    else{
+        res.render('index', { title: 'Express', role: req.session.role, username: req.session.username });
+    } else {
       res.redirect('/');
     }
-  });
+});
 
 module.exports = router;

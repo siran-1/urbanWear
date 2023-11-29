@@ -3,14 +3,14 @@ var router = express.Router();
 
 const AWS = require('aws-sdk');
 
-AWS.config.update({
-    region: 'us-east-1',
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    sessionToken: process.env.AWS_SESSION_TOKEN
+AWS.config.credentials = new AWS.EC2MetadataCredentials({
+    httpOptions: { timeout: 5000 },
+    maxRetries: 10,
+    retryDelayOptions: { base: 200 }
 });
 
-const sqs = new AWS.SQS({ apiVersion: '2012-11-05' });
+
+const sqs = new AWS.SQS({ apiVersion: '2012-11-05', region: 'us-east-1' });
 
 const queueURL = "https://sqs.us-east-1.amazonaws.com/981728932529/urbanWearQueueMain";
 

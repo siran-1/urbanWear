@@ -16,7 +16,6 @@ function getNotifications() {
                 message = (JSON.parse(response.notifications[0]));
                 
                 let messagecontent = message.Message;
-                console.log(messagecontent);
                 let notificationparentdiv = document.getElementById('notification_parentDiv');
                 let messagediv = document.createElement('div');
                 messagediv.classList.add('urbanMessageDiv');

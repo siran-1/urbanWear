@@ -5,7 +5,6 @@ function logout() {
         method: 'POST'
     })
         .then(() => {
-            console.log("Session destroyed and logged out.");
             window.location.href = '/';
         })
         .catch((error) => {

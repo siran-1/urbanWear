@@ -1,10 +1,7 @@
 var express = require('express');
 var router = express.Router();
 router.use(express.json());
-
-var util = require('util');
-var connection = require('../db/dbConnection');
-connection.query = util.promisify(connection.query);
+var pool = require('../db/dbConnection'); 
 
 /* GET data. */
 router.post('/', async function (req, res) {
@@ -19,7 +16,8 @@ router.post('/', async function (req, res) {
         const selectedMonth = req.body.selectedMonth;
         const selectedYear = req.body.selectedYear;
         const values = [selectedMonth, selectedYear];
-        const analyticResults = await connection.query(query, values);
+
+        const [analyticResults] = await pool.query(query, values);
         res.json(analyticResults);
     } catch (error) {
         console.error(error);

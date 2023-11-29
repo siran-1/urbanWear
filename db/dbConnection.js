@@ -1,19 +1,24 @@
 const mysql2 = require('mysql2');
 
-const connection = mysql2.createConnection({
+// Create a pool instead of a single connection
+const pool = mysql2.createPool({
     host: 'urbanwearproduction.cmh26ou85r5h.us-east-1.rds.amazonaws.com',
     user: 'admin',
     password: '!Naruto2023',
-    database: '',
-    port: 3306
+    database: 'urbanWear', 
+    port: 3306,
+    waitForConnections: true,
+    connectionLimit: 10, 
+    queueLimit: 0
 });
 
-connection.connect((err) => {
+pool.getConnection((err, connection) => {
     if (err) {
-        console.error('Error connecting to the database server:', err);
+        console.error('Error connecting to the database:', err);
         return;
     }
     console.log('Connected to the database');
+    connection.release(); 
 });
 
-module.exports = connection;
+module.exports = pool.promise(); 

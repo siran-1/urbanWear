@@ -48,7 +48,6 @@ $(document).ready(function () {
             contentType: false,
             success: function (response) {
                 $("#insert_order_form")[0].reset();
-                console.log("Success:", response);
                 orderSubmitBtn.textContent = '✔ Order Added';
                 setTimeout(() => {
                     orderSubmitBtn.textContent = 'Submit';

@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
     let selectedMonth, selectedYear, source;
 
@@ -48,7 +49,7 @@ $(document).ready(function () {
                 source = "totalOrders";
                 let title = "Total Approved Orders";
                 ajax(selectedMonth, selectedYear, source).done(function (data) {
-                    totalOrders = data;
+                    totalOrders = data[0];
                     $('#productSalesChart_Div').css('display', 'flex');
                     generateOrderChart?.destroyChart();
                     generateOrderChart = new GenerateChart({ data: totalOrders, source, canvasElement: canvasElement_orders, title });
@@ -61,7 +62,7 @@ $(document).ready(function () {
                 source = "totalStock";
                 let title = "Available Stock"
                 ajax(selectedMonth, selectedYear, source).done(function (data) {
-                    totalStock = data;
+                    totalStock = data[0];
                     $('#allSizeStockChart_Div').css('display', 'flex');
                     generateStockChart?.destroyChart();
                     generateStockChart = new GenerateChart({ data: totalStock, source, canvasElement: canvasElement_stock, title });
@@ -74,7 +75,7 @@ $(document).ready(function () {
                 source = "supplierMetric";
                 let title = "Total Damaged Units - By Product ID";
                 ajax(selectedMonth, selectedYear, source).done(function (data) {
-                    supplierMetric = data;
+                    supplierMetric = data[0];
                     $('#supplierMetric_Div').css('display', 'flex');
                     generateSupplierMetric?.destroyChart();
                     generateSupplierMetric = new GenerateChart({ data: supplierMetric, source, canvasElement: canvasElement_supplier, title });
@@ -107,7 +108,7 @@ $(document).ready(function () {
             let title = "Damaged Rate Analysis For Individual Suppliers For The Total stock";
             source = 'supplierMetricCompare';
             ajax(selectedMonth, selectedYear, source).done(function (data) {
-                supplierMetricCompare = data;
+                supplierMetricCompare = data[0];
                 generateSupplierMetric?.destroyChart();
                 generateSupplierMetric = new GenerateChart({chartType, data: supplierMetricCompare, source, canvasElement: canvasElement_supplier, title });
             }).fail(function (xhr, status, error) {
@@ -134,4 +135,4 @@ function ajax(selectedMonth, selectedYear, source) {
 }
 
 
-
+ 
