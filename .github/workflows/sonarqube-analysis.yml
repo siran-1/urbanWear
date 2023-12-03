@@ -22,9 +22,9 @@ jobs:
       uses: SonarSource/sonarqube-scan-action@master
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_HOST_URL: http://54.91.132.20:9000
+        SONAR_HOST_URL: http://3.84.232.244:9000
       with:
         args: >
           -Dsonar.projectKey=urbanWear
-          -Dsonar.host.url=http://54.91.132.20:9000/
+          -Dsonar.host.url=http://3.84.232.244:9000/
           -Dsonar.login=${{ secrets.SONARQUBE_TOKEN }}
